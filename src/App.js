@@ -1,11 +1,16 @@
 import React , { Component } from 'react';
-import {Button} from 'antd';
+import Login from './containers/login';
+import { BrowserRouter, Route } from 'react-router-dom'
+import Xxx from '@/containers/xxx'
 class App extends Component {
   render() {
     return (
-            <div className="App">
-               开始<Button>123</Button>
-            </div>
+        <div>
+            <BrowserRouter>
+                <Route path="/" exact component={Login} />
+                <Route path="/home" exact component={Xxx} />
+            </BrowserRouter>
+        </div>
     );
   }
 }
