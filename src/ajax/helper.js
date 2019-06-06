@@ -1,4 +1,5 @@
-const commonUrl = 'http://192.168.20.96:8080'
+import domain from  '@/config';
+const commonUrl = domain.domain;
 localStorage.setItem("access_token","test")
 
 function parseJSON(response){

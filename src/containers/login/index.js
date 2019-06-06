@@ -1,11 +1,18 @@
 import React , { Component } from 'react';
 import PropTypes from 'prop-types'
-import { Form, Icon, Input, Button, } from 'antd';
+import { Form, Icon, Input, Button, message} from 'antd';
 import * as Actions from './actions';
 import {connect} from 'react-redux';
 import styles from './index.module.scss';
 import request from '@/ajax/helper.js';
+import Cookie from "@/component/cookie.js"
+message.config({
+    top: 100,
+    duration: 2,
+    maxCount: 3,
+});
 class Login extends Component {
+    //点击登录
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -18,12 +25,19 @@ class Login extends Component {
                 }).then((res)=>{
                     console.log(res);
                     if(res.response==="1"){
-                        this.props.addUserInfo(res.content)
+                        message.success('登录成功');
+                        this.props.addUserInfo(res.content);
+                        Cookie.setCookie('login_key', res.content.login_key);
+                        Cookie.setCookie('id', res.content.id);
+                        Cookie.setCookie('nick_name', res.content.nick_name);
+                        Cookie.setCookie('avatar', res.content.avatar);
                         if(identity==2){
                             this.props.history.push('/');
                         }else if(identity==1){
                             this.props.history.push('/admin');
                         }
+                    }else{
+                        message.error(res.content);
                     }
                 })
             }
