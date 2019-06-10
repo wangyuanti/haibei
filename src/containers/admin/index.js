@@ -1,12 +1,17 @@
 import React , { Component} from 'react';
+import { BrowserRouter, Route,Switch,Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import styles from './index.module.scss';
 import {connect} from 'react-redux';
-import { Menu, Icon ,Avatar} from 'antd';
-import Logo from '@/img/logo.png';
-import url from  '@/config';
-import Cookie from "@/component/cookie.js"
-const { SubMenu }  = Menu;
+import Nav from "@/component/nav"
+import Header from '@/component/header'
+//子页面
+import UserList from './userList';
+import CompanyList from './companyList'
+//nav图标
+import UserListIco from '@/img/userList.png';
+import CompanyListIco from '@/img/companyList.png';
+
 class Admin extends Component {
     constructor(props) {
         super(props);
@@ -16,26 +21,29 @@ class Admin extends Component {
     }
     render() {
         console.log(this.props);
-        let imgUrl='' ;
-        if(this.props.userInfo&&JSON.stringify(this.props.userInfo) !== "{}"){
-            console.log(1)
-            imgUrl=url.img +this.props.userInfo.avatar;
-        }else {
-            console.log(2)
-            imgUrl=url.img +Cookie.getCookie('avatar')
-        }
-        console.log(imgUrl,Cookie.getCookie('avatar'));
+        //导航列表
+        let navList=[
+            {path:'/admin/UserList',name:'用户列表',ico:UserListIco,exact:false},
+            {path:'/admin/CompanyList',name:'公司列表',ico:CompanyListIco,exact:false},
+        ];
+        //路由列表
+        let routeList=[
+            {path:"/admin/UserList",component:UserList},
+            {path:"/admin/CompanyList",component:CompanyList},
+        ];
+        let newRouteList=routeList.map((e,i)=>{
+            return <Route path={e.path}  component={e.component} key={e.path}/>
+        })
         return (
             <div>
-                <div className={styles.header}>
-                    <div><img src={Logo} alt=""/></div>
-                    <div>
-                        <Avatar size={50} src={imgUrl} />
+                <Header />
+                <div className={styles.navAndBody}>
+                    <Nav navList={navList}/>
+                    <div className={styles.body}>
+                        {newRouteList}
                     </div>
                 </div>
-                <div></div>
             </div>
-
         );
     }
 }

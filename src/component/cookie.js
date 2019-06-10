@@ -20,6 +20,14 @@ export default {
         d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
         const expires = "expires=" + d.toGMTString();
         document.cookie = key + "=" + value + "; " + expires;
+    },
+
+    //清除cookie
+    deleteCookie(key,path){
+        const d = new Date();
+        d.setTime(d.getTime() - 1);
+        const expires = "expires=" + d.toGMTString();
+        document.cookie = key + "=" + ' ' + "; " + expires + ";path="+path;
     }
 
 }
