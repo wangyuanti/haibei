@@ -8,11 +8,11 @@ import url from  '@/config';
 import Cookie from "@/component/cookie.js";
 import {connect} from "react-redux";
 class Header extends Component {
-    tc=()=>{
-        Cookie.deleteCookie('login_key','/admin')
-        Cookie.deleteCookie('id','/admin')
-        Cookie.deleteCookie('nick_name','/admin')
-        Cookie.deleteCookie('avatar','/admin')
+    quit(path){
+        Cookie.deleteCookie('login_key',path);
+        Cookie.deleteCookie('id',path);
+        Cookie.deleteCookie('nick_name',path);
+        Cookie.deleteCookie('avatar',path);
     }
     render() {
         const menu = (
@@ -21,7 +21,7 @@ class Header extends Component {
                     个人中心
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to='/admin/login' onClick={this.tc}>退出登录</Link>
+                    <Link to='/admin/login' onClick={()=>this.quit(this.props.path)}>退出登录</Link>
                 </Menu.Item>
             </Menu>
         );

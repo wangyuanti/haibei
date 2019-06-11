@@ -1,4 +1,6 @@
 import domain from  '@/config';
+import Cookie from "@/component/cookie.js"
+import {message} from "antd";
 const commonUrl = domain.domain;
 localStorage.setItem("access_token","test")
 
@@ -17,10 +19,19 @@ function checkStatus(response){
 
 export default  function request(options = {}){
     // const Authorization = localStorage.getItem('access_token')
-    const {data,url} = options
+    const {data,url,method} = options
     options = {...options}
     options.mode = 'cors'
-    delete options.url
+    delete options.url;
+    let newUrl = url;
+    let token = Cookie.getCookie('login_key');
+    if(method==='get'){
+        newUrl=url+'?login_key='+token;
+    }else if(method==='post'){
+        if(document.cookie.indexOf('login_key=')!==-1){
+            data.login_key=token;
+        }
+    }
     if(data){
         delete options.data;
         options.body = JSON.stringify(data);
@@ -29,8 +40,19 @@ export default  function request(options = {}){
         // 'Authorization':Authorization,
         'Content-Type':'application/json'
     }
-    return fetch(commonUrl+url,options,{credentials: 'include'})
+    return fetch(commonUrl+newUrl,options,{credentials: 'include'})
         .then(checkStatus)
         .then(parseJSON)
+        .then((res)=>{
+            if(res.response==="403"){
+                message.error(res.content);
+                if(window.location.pathname.includes('/admin')){
+                    window.location = '/admin/login'
+                }else{
+                    window.location = '/login'
+                }
+            }
+            return res
+        })
         .catch(err=>({err}))
 }

@@ -23,7 +23,6 @@ class Login extends Component {
                     method:'post',
                     data:{...values,identity}
                 }).then((res)=>{
-                    console.log(res);
                     if(res.response==="1"){
                         message.success('登录成功');
                         this.props.addUserInfo(res.content);
@@ -34,7 +33,7 @@ class Login extends Component {
                         if(identity==2){
                             this.props.history.push('/');
                         }else if(identity==1){
-                            this.props.history.push('/admin');
+                            this.props.history.push('/admin/CompanyList');
                         }
                     }else{
                         message.error(res.content);
