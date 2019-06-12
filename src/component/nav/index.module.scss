@@ -1,6 +1,11 @@
 .nav{
-  width: 120px;
+  width: 130px;
   background-color: #247AF2;
+  background-image:-webkit-linear-gradient(90deg,#247AF2 120px,#EEF2F4 10px);
+  background-image:-moz-linear-gradient(90deg,#247AF2 120px,#EEF2F4 10px);
+  background-image:-ms-linear-gradient(90deg,#247AF2 120px,#EEF2F4 10px);
+  background-image:-o-linear-gradient(90deg,#247AF2 120px,#EEF2F4 10px);
+  background-image:linear-gradient(90deg,#247AF2 120px,#EEF2F4 10px);
   color: white;
   box-sizing: border-box;
   height: calc(100vh - 100px);
@@ -17,7 +22,7 @@
     box-sizing: border-box;
     flex-wrap: wrap;
     text-align: center;
-    width: 100%;
+    width: 120px;
     height: 120px;
     color: white;
     .navIco{
@@ -31,6 +36,12 @@
       font-size: 16px;
     }
   }
+}
+.navBox{
+  width: 120px;
+  background-color: #247AF2;
+  color: white;
+  box-sizing: border-box;
 }
 .on{
   width: 130px;

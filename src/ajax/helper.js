@@ -25,6 +25,7 @@ export default  function request(options = {}){
     delete options.url;
     let newUrl = url;
     let token = Cookie.getCookie('login_key');
+    let getData=[];
     if(method==='get'){
         newUrl=url+'?login_key='+token;
     }else if(method==='post'){
@@ -33,8 +34,15 @@ export default  function request(options = {}){
         }
     }
     if(data){
-        delete options.data;
-        options.body = JSON.stringify(data);
+        if(method==='get'){
+            for(let key  in data){
+                getData.push(key + '=' + data[key]);
+            }
+            newUrl=newUrl+'&'+getData.join('&');
+        }else if(method==='post'){
+            delete options.data;
+            options.body = JSON.stringify(data);
+        }
     }
     options.headers={
         // 'Authorization':Authorization,

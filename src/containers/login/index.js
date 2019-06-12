@@ -12,6 +12,12 @@ message.config({
     maxCount: 3,
 });
 class Login extends Component {
+    componentWillMount(){
+        Cookie.deleteCookie('login_key');
+        Cookie.deleteCookie('id');
+        Cookie.deleteCookie('nick_name');
+        Cookie.deleteCookie('avatar');
+    }
     //点击登录
     handleSubmit = e => {
         e.preventDefault();
@@ -42,6 +48,7 @@ class Login extends Component {
             }
         });
     };
+
     render() {
         const { getFieldDecorator } = this.props.form;
         return (

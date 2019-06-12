@@ -9,10 +9,15 @@ import Cookie from "@/component/cookie.js";
 import {message} from "antd";
 //子页面
 import UserList from './userList';
-import CompanyList from './companyList'
+import CompanyList from './companyList';
+import LogList from './logList';
+import CountryList from './countryList';
+
 //nav图标
 import UserListIco from '@/img/userList.png';
 import CompanyListIco from '@/img/companyList.png';
+import LogListIco from '@/img/log.png';
+import countryListIco from '@/img/country.png';
 
 
 class Admin extends Component {
@@ -31,18 +36,21 @@ class Admin extends Component {
             return
         }
     }
-
     render() {
         // console.log(this.props);
         //导航列表
         let navList=[
             {path:'/admin/CompanyList',name:'公司列表',ico:CompanyListIco,exact:false},
             {path:'/admin/UserList',name:'用户列表',ico:UserListIco,exact:false},
+            {path:'/admin/LogList',name:'操作日志',ico:LogListIco,exact:false},
+            {path:'/admin/countryList',name:'国家列表',ico:countryListIco,exact:false},
         ];
         //路由列表
         let routeList=[
             {path:"/admin/CompanyList",component:CompanyList},
             {path:"/admin/UserList",component:UserList},
+            {path:"/admin/LogList",component:LogList},
+            {path:"/admin/countryList",component:CountryList},
         ];
         let newRouteList=routeList.map((e,i)=>{
             return <Route path={e.path}  component={e.component} key={e.path}/>

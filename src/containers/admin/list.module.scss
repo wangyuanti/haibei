@@ -14,11 +14,14 @@
   align-items: center;
   margin-bottom: 40px;
   .modalRowTitle{
-
     flex-shrink: 0;
     margin-right: 16px;
   }
 }
-.xxx{
-  width: 0px;
+.oddRow{
+  background-color: #ffffff;
 }
+.evenRow{
+  background-color: #F0F6FF;
+}
+

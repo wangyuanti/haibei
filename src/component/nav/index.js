@@ -12,6 +12,7 @@ class Nav extends Component {
             return <NavLink to={e.path} key = {e.path}
                             activeStyle={{
                                 backgroundColor:'#2458F2',
+                                width:'130px'
                             }}>
                 <Ico img={e.ico}/>
                 <p>{e.name}</p>
