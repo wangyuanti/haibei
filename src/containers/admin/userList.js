@@ -9,10 +9,9 @@ class UserList extends Component {
         this.state={
             page:1,        //列表页码
             limit:10,      //列表每页显示数
-            userList:[],   //用户组列表
+            userList:[],   //用户列表
             total:0,      //列表项总数
             dataLoading:false, //数据请求Loading
-            iden:0,           //项目状态
         }
     }
     componentDidMount(){
