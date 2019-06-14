@@ -59,6 +59,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
@@ -151,10 +152,12 @@
           "style": "css"
         }
       ],
-      ["@babel/plugin-proposal-decorators",
+      [
+        "@babel/plugin-proposal-decorators",
         {
           "legacy": true
-        }]
+        }
+      ]
     ]
   }
 }

@@ -182,6 +182,7 @@ class CompanyList extends Component {
                        visible={visible}
                        onOk={(e)=>this.handleOk(e)}
                        onCancel={this.handleCancel}
+                       maskClosable={false}
                        footer={[
                            <Button key="back" onClick={this.handleCancel}>
                                取消

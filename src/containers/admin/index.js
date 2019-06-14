@@ -49,7 +49,7 @@ class Admin extends Component {
         }
     }
     render() {
-        // console.log(this.props);
+        console.log(this.props);
         //导航列表
         let navList=[
             {path:'/admin/CompanyList',name:'公司列表',ico:CompanyListIco,exact:false},
