@@ -2,8 +2,9 @@ import React , { Component } from 'react';
 import { Button,Table, Divider, message,Modal,Input,Popconfirm,Spin} from 'antd';
 import styles from './list.module.scss';
 import request from '@/ajax/helper.js';
-
+import InjectUnmount from '@/component/unmount';
 const { TextArea } = Input;
+@InjectUnmount
 class CompanyList extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +16,9 @@ class CompanyList extends Component {
             oneInfo:{},  //单条公司数据
             handleOkType:'',//弹窗回调类型
             dataLoading:false, //数据请求Loading
+            page:1,        //列表页码
+            limit:10,      //列表每页显示数
+            total:0,      //列表项总数
         }
     }
     componentDidMount(){
@@ -22,13 +26,15 @@ class CompanyList extends Component {
     }
     //获取公司列表
     getList=()=>{
+        let{page,limit}=this.state;
         this.setState({dataLoading:true},()=>{
             request({
                 url:'/company',
                 method:'get',
+                data:{p:page,limit}
             }).then((res)=>{
                 if(res.response==="1"){
-                    this.setState({companyList:res.content,dataLoading:false})
+                    this.setState({companyList:res.content,dataLoading:false,total:res.all_count})
                 }else if(res.response==="0"){
                     this.setState({dataLoading:false})
                     message.error(res.content);
@@ -39,14 +45,14 @@ class CompanyList extends Component {
     };
     //添加单条公司信息
     addOneInfo=()=>{
-        let{oneInfo}=this.state;
+        let{oneInfo,page,limit}=this.state;
         request({
             url:'/company',
             method:'post',
-            data:oneInfo,
+            data:{...oneInfo,p:page,limit},
         }).then((res)=>{
             if(res.response==="1"){
-                this.setState({ loading: false, visible: false ,companyList:res.content,oneInfo:{}});
+                this.setState({ loading: false, visible: false ,companyList:res.content,oneInfo:{},total:res.all_count});
             }else if(res.response==="0"){
                 message.error(res.content);
                 this.setState({ loading: false});
@@ -59,7 +65,6 @@ class CompanyList extends Component {
             url:'/company/'+info.id,
             method:'get',
         }).then((res)=>{
-            console.log(res);
             if(res.response==="1"){
                 this.setState({oneInfo:{name:res.content.name,content:res.content.content,id:res.content.id}})
             }else if(res.response==="0"){
@@ -69,15 +74,15 @@ class CompanyList extends Component {
     };
     //修改公司信息
     setOneInfo=()=>{
-        let{oneInfo}=this.state;
+        let{oneInfo,page,limit}=this.state;
         request({
             url:'/company/update/'+oneInfo.id,
             method:'post',
-            data:oneInfo,
+            data:{...oneInfo,p:page,limit},
         }).then((res)=>{
             console.log(res);
             if(res.response==="1"){
-                this.setState({ loading: false, visible: false,companyList:res.content,oneInfo:{}});
+                this.setState({ loading: false, visible: false,companyList:res.content,oneInfo:{},total:res.all_count});
             }else if(res.response==="0"){
                 message.error(res.content);
                 this.setState({ loading: false});
@@ -86,14 +91,14 @@ class CompanyList extends Component {
     };
     //删除公司
     deleteOneInfo=()=>{
-        let{oneInfo}=this.state;
+        let{oneInfo,page,limit}=this.state;
         request({
             url:'/company/delete/'+oneInfo.id,
             method:'get',
+            data:{p:page,limit},
         }).then((res)=>{
-            console.log(res);
             if(res.response==="1"){
-                this.setState({companyList:res.content,oneInfo:{}});
+                this.setState({companyList:res.content,oneInfo:{},total:res.all_count});
                 message.success('删除成功');
             }else if(res.response==="0"){
                 message.error(res.content);
@@ -141,9 +146,15 @@ class CompanyList extends Component {
     cancel(e) {
         message.error('取消删除');
     };
-
+    //修改每页显示数
+    onShowSizeChange(current, pageSize){
+        this.setState({limit:pageSize},this.getList)
+    }
+    onJumpChange(pageNumber) {
+        this.setState({page:pageNumber},this.getList)
+    }
     render() {
-        const columns = [{title: 'ID',dataIndex: 'id',},{title: '名称', dataIndex: 'name',},
+        const columns = [{title: '序号',dataIndex: 'key',},{title: '名称', dataIndex: 'name',},
             {title: '操作',key: 'action',
                 render: (text, record) => (<div>
                     <Button type="primary" onClick={()=>this.showModal('修改公司信息',()=>this.getOneInfo(text),'upData')}>编辑</Button>
@@ -158,9 +169,9 @@ class CompanyList extends Component {
                     <Button type="danger" onClick={()=>this.getOneInfo(text)}>删除</Button>
                   </Popconfirm></div>)},
         ];
-        let{companyList,modalTitle,visible,loading,oneInfo,dataLoading} = this.state;
+        let{companyList,modalTitle,visible,loading,oneInfo,dataLoading,page,total} = this.state;
         let newCompanyList = companyList.map((e,i)=>{
-            return {...e,key:i}
+            return {...e,key:(page-1)*10+i+1}
         });
         return (
            <div>
@@ -192,7 +203,9 @@ class CompanyList extends Component {
                </div>
                <div  className={styles.body}>
                    <Spin spinning={dataLoading}>
-                    <Table columns={columns} dataSource={newCompanyList} bordered rowClassName={(record,index) => index % 2===0?styles.oddRow:styles.evenRow }/>
+                    <Table columns={columns} dataSource={newCompanyList} bordered rowClassName={(record,index) => index % 2===0?styles.oddRow:styles.evenRow }
+                           pagination={{total,showSizeChanger:true,onShowSizeChange:(current, pageSize)=>this.onShowSizeChange(current, pageSize),
+                               showQuickJumper:true,onChange:(pageNumber)=>this.onJumpChange(pageNumber),current:page}}/>
                    </Spin>
                </div>
 
