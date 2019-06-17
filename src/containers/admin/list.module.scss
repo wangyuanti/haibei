@@ -1,5 +1,9 @@
 .header{
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }
 .body{
   width: 100%;
@@ -24,6 +28,40 @@
 .evenRow{
   background-color: #F0F6FF;
 }
-.xxx{
-  width: 100px;
+.filterBox{
+  font-size: 18px;
+ .filterHeader{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+ }
+  .filterBody{
+    display: flex;
+    font-size: 16px;
+    line-height: 20px;
+    color: #333333;
+    .countryList{
+      display: flex;
+      flex-wrap: wrap;
+      color: #666666;
+      .countryItem{
+        line-height: 20px;
+        margin: 0 10px 20px;
+        cursor:pointer;
+      }
+      .countryItemOk{
+        border-bottom: 1px solid #247AF2;
+        color: #247AF2;
+      }
+    }
+    .filterTitle{
+      flex-shrink: 0;
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+    }
+  }
+
 }
+
