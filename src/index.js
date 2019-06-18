@@ -8,13 +8,16 @@ import './css/public.css';
 import { LocaleProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <LocaleProvider locale={zh_CN}>
+        <LocaleProvider locale={zh_CN}>
+            <PersistGate loading={null} persistor={persistor}>
                 <App />
-            </LocaleProvider>
-        </PersistGate>
+            </PersistGate>
+        </LocaleProvider>
     </Provider>,
     document.getElementById('root'));
 

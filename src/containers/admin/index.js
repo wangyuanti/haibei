@@ -19,6 +19,7 @@ import FeeTypeList from './feeTypeList';
 import ClientSourceList from './clientSourceList';
 import ResourcePoolDeploy from './resourcePoolDeploy';
 import CaseList from './caseList';
+import ResourceList from './resourceList'
 //nav图标
 import UserListIco from '@/img/userList.png';
 import CompanyListIco from '@/img/companyList.png';
@@ -31,6 +32,7 @@ import  FeeTypeListIco from '@/img/feeType.png';
 import  ClientSourceListIco from '@/img/clientSource.png';
 import ResourcePoolDeployIco from '@/img/resourcePool.png';
 import CaseListIco from '@/img/case.png';
+import ResourceListIco from  '@/img/resourceList.png'
 
 class Admin extends Component {
     constructor(props) {
@@ -60,9 +62,11 @@ class Admin extends Component {
             {path:'/admin/countryList',name:'国家列表',ico:countryListIco,exact:false},
             {path:'/admin/projectList',name:'项目列表',ico:ProjectListIco,exact:false},
             {path:'/admin/CaseList',name:'案子列表',ico:CaseListIco,exact:false},
+            {path:'/admin/ResourceList',name:'资源列表',ico:ResourceListIco,exact:false},
             {path:'/admin/FeeTypeList',name:'费用类型',ico:FeeTypeListIco,exact:false},
             {path:'/admin/ClientSourceList',name:'客户来源',ico:ClientSourceListIco,exact:false},
             {path:'/admin/ResourcePoolDeploy',name:'资源池配置',ico:ResourcePoolDeployIco,exact:false},
+
 
         ];
         //路由列表
@@ -75,6 +79,7 @@ class Admin extends Component {
             {path:"/admin/countryList",component:CountryList},
             {path:"/admin/projectList",component:ProjectList},
             {path:"/admin/CaseList",component:CaseList},
+            {path:"/admin/ResourceList",component:ResourceList},
             {path:"/admin/FeeTypeList",component:FeeTypeList},
             {path:"/admin/ClientSourceList",component:ClientSourceList},
             {path:"/admin/ResourcePoolDeploy",component:ResourcePoolDeploy},
