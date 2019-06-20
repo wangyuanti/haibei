@@ -102,6 +102,9 @@ class ResourceList extends Component {
         let {SearchInfo}=this.state;
         this.setState({SearchInfo:{...SearchInfo,search:'',start_time:dateString[0],end_time:dateString[1]}},this.getList)
     }
+    addInfo=()=>{
+        this.props.history.push('/admin/ResourceList/add');
+    }
     render() {
         let{listInfo,total,page,dataLoading,CountryAndProjectList,projectList,SearchInfo} = this.state;
         let columns = [ {title: '序号',dataIndex: 'key'},{title: '名称',dataIndex: 'name'},
@@ -125,7 +128,7 @@ class ResourceList extends Component {
         return (
             <div>
                 <div className={styles.header}>
-                    <Button type="primary" icon="plus" size='large' style={{width:'100px'}}>添加</Button>
+                    <Button type="primary" icon="plus" size='large' style={{width:'100px'}} onClick={this.addInfo}>添加</Button>
                     <Search placeholder="请输入搜索内容" onSearch={value =>this.Search(value)} onChange={(e)=>this.SearchChange(e)}
                             enterButton='搜索' style={{width:270}} size="large" value={SearchInfo.search}/>
                 </div>

@@ -33,7 +33,8 @@ import  ClientSourceListIco from '@/img/clientSource.png';
 import ResourcePoolDeployIco from '@/img/resourcePool.png';
 import CaseListIco from '@/img/case.png';
 import ResourceListIco from  '@/img/resourceList.png'
-
+//动态路由页面
+import ResourceListChild from './resourceListChild'
 class Admin extends Component {
     constructor(props) {
         super(props);
@@ -54,18 +55,18 @@ class Admin extends Component {
         console.log(this.props);
         //导航列表
         let navList=[
-            {path:'/admin/CompanyList',name:'公司列表',ico:CompanyListIco,exact:false},
-            {path:'/admin/CompetenceList',name:'权限列表',ico:CompetenceListIco,exact:false},
-            {path:'/admin/UserGroupList',name:'用户组列表',ico:UserGroupListIco,exact:false},
-            {path:'/admin/UserList',name:'用户列表',ico:UserListIco,exact:false},
-            {path:'/admin/LogList',name:'操作日志',ico:LogListIco,exact:false},
-            {path:'/admin/countryList',name:'国家列表',ico:countryListIco,exact:false},
-            {path:'/admin/projectList',name:'项目列表',ico:ProjectListIco,exact:false},
-            {path:'/admin/CaseList',name:'案子列表',ico:CaseListIco,exact:false},
-            {path:'/admin/ResourceList',name:'资源列表',ico:ResourceListIco,exact:false},
-            {path:'/admin/FeeTypeList',name:'费用类型',ico:FeeTypeListIco,exact:false},
-            {path:'/admin/ClientSourceList',name:'客户来源',ico:ClientSourceListIco,exact:false},
-            {path:'/admin/ResourcePoolDeploy',name:'资源池配置',ico:ResourcePoolDeployIco,exact:false},
+            {path:'/admin/CompanyList',name:'公司列表',ico:CompanyListIco},
+            {path:'/admin/CompetenceList',name:'权限列表',ico:CompetenceListIco},
+            {path:'/admin/UserGroupList',name:'用户组列表',ico:UserGroupListIco},
+            {path:'/admin/UserList',name:'用户列表',ico:UserListIco},
+            {path:'/admin/LogList',name:'操作日志',ico:LogListIco},
+            {path:'/admin/countryList',name:'国家列表',ico:countryListIco},
+            {path:'/admin/projectList',name:'项目列表',ico:ProjectListIco},
+            {path:'/admin/CaseList',name:'案子列表',ico:CaseListIco},
+            {path:'/admin/ResourceList',name:'资源列表',ico:ResourceListIco},
+            {path:'/admin/FeeTypeList',name:'费用类型',ico:FeeTypeListIco},
+            {path:'/admin/ClientSourceList',name:'客户来源',ico:ClientSourceListIco},
+            {path:'/admin/ResourcePoolDeploy',name:'资源池配置',ico:ResourcePoolDeployIco},
 
 
         ];
@@ -79,14 +80,14 @@ class Admin extends Component {
             {path:"/admin/countryList",component:CountryList},
             {path:"/admin/projectList",component:ProjectList},
             {path:"/admin/CaseList",component:CaseList},
-            {path:"/admin/ResourceList",component:ResourceList},
+            {path:"/admin/ResourceList",component:ResourceList,exact:true},
             {path:"/admin/FeeTypeList",component:FeeTypeList},
             {path:"/admin/ClientSourceList",component:ClientSourceList},
             {path:"/admin/ResourcePoolDeploy",component:ResourcePoolDeploy},
-
+            {path:"/admin/ResourceList/add",component:ResourceListChild},
         ];
         let newRouteList=routeList.map((e,i)=>{
-            return <Route path={e.path}  component={e.component} key={e.path}/>
+            return <Route path={e.path}  component={e.component} key={e.path} exact={e.exact}/>
         })
         return (
             <div>

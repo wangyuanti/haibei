@@ -5,7 +5,7 @@ import Ico from '@/component/ico';
 import defaultImg from '@/img/default.png'
 class Nav extends Component {
     static defaultProps = {
-        navList:[{path:'/admin',name:'导航',ico:defaultImg,exact:false}]
+        navList:[{path:'/admin',name:'导航',ico:defaultImg}]
     };
     render() {
         let newNavList = this.props.navList.map(e=>{
