@@ -21,7 +21,7 @@ class Header extends Component {
                     个人中心
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to='/admin/login' onClick={()=>this.quit(this.props.path)}>退出登录</Link>
+                    <Link to='login' onClick={()=>this.quit(this.props.path)}>退出登录</Link>
                 </Menu.Item>
             </Menu>
         );

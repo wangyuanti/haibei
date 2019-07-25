@@ -3,6 +3,7 @@ import { BrowserRouter, Route,Switch,Redirect } from 'react-router-dom';
 import asyncComponent from '@/component/AsyncComponent.js';
 const AsyncLogin = asyncComponent(() => import('@/containers/login'));
 const AsyncAdmin = asyncComponent(() => import('@/containers/admin'));
+const AsyncUser = asyncComponent(() => import('@/containers/user'));
 class App extends Component {
   render() {
     return (
@@ -12,7 +13,9 @@ class App extends Component {
                     <Route path="/admin/login"  component={AsyncLogin} />
                     <Route path="/login" component={AsyncLogin} />
                     <Route path="/admin" component={AsyncAdmin} />
-                    <Redirect path="/" to={{pathname: '/login'}} />
+                    <Route path="/" component={AsyncUser} />
+                    {/*<Redirect path="/" to={{pathname: '/login'}} />*/}
+                    <Redirect from="/*" to='/login' />
                 </Switch>
             </BrowserRouter>
         </div>
