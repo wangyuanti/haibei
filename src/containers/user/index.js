@@ -6,7 +6,10 @@ import {connect} from 'react-redux';
 import Nav from "@/component/nav";
 import Header from '@/component/header';
 import {message} from "antd";
+import Breadcrumbs from '@/component/Breadcrumb'
+import UserInfo from '@/containers/userInfo';
 import Home from './home';
+
 import CompanyListIco from '@/img/companyList.png';
 class User extends Component {
     constructor(props) {
@@ -38,8 +41,10 @@ class User extends Component {
                 <div className={styles.navAndBody}>
                     <Nav navList={routeList}/>
                     <div className={styles.body}>
+                        <Breadcrumbs />
                         <Switch>
                             {newRouteList}
+                            <Route path="/userInfo" component={UserInfo} />
                             <Redirect from="/*" to={{pathname: '/home'}} />
                         </Switch>
                     </div>

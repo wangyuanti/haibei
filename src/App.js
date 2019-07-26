@@ -14,6 +14,7 @@ class App extends Component {
                     <Route path="/login" component={AsyncLogin} />
                     <Route path="/admin" component={AsyncAdmin} />
                     <Route path="/" component={AsyncUser} />
+
                     {/*<Redirect path="/" to={{pathname: '/login'}} />*/}
                     <Redirect from="/*" to='/login' />
                 </Switch>

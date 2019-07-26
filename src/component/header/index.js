@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { Menu, Icon ,Avatar,Dropdown} from 'antd';
 import { Link} from 'react-router-dom';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import styles from './index.module.scss';
 import Logo from '@/img/logo.png';
 import url from  '@/config';
@@ -18,7 +18,7 @@ class Header extends Component {
         const menu = (
             <Menu>
                 <Menu.Item>
-                    个人中心
+                    <Link to='/userInfo'>个人中心</Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link to='login' onClick={()=>this.quit(this.props.path)}>退出登录</Link>
@@ -56,4 +56,4 @@ function mapStateToProps(state) {
         userInfo:state.userInfo
     }
 }
-export default connect(mapStateToProps)(Header);;
+export default connect(mapStateToProps)(Header);
