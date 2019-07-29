@@ -13,10 +13,9 @@ class UserInfo extends Component {
         this.props.history.goBack();
     }
     render() {
-        // const { location } = this.props;
-        // const pathSnippets = location.pathname.split('/').filter(i => i);
         return (
             <div>
+                <Breadcrumbs />
                 userInfo
             </div>
         );

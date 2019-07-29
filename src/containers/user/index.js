@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import Nav from "@/component/nav";
 import Header from '@/component/header';
 import {message} from "antd";
-import Breadcrumbs from '@/component/Breadcrumb'
 import UserInfo from '@/containers/userInfo';
 import Home from './home';
 
@@ -41,11 +40,10 @@ class User extends Component {
                 <div className={styles.navAndBody}>
                     <Nav navList={routeList}/>
                     <div className={styles.body}>
-                        <Breadcrumbs />
                         <Switch>
                             {newRouteList}
                             <Route path="/userInfo" component={UserInfo} />
-                            <Redirect from="/*" to={{pathname: '/home'}} />
+                            <Redirect from="/*" to={{pathname: '/login'}} />
                         </Switch>
                     </div>
                 </div>

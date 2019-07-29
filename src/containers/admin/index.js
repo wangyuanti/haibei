@@ -7,7 +7,6 @@ import Nav from "@/component/nav";
 import Header from '@/component/header';
 import Cookie from "@/component/cookie.js";
 import {message} from "antd";
-import Breadcrumbs from '@/component/Breadcrumb'
 //子页面
 import UserList from './userList';
 import CompanyList from './companyList';
@@ -102,10 +101,9 @@ class Admin extends Component {
                 <div className={styles.navAndBody}>
                     <Nav navList={navList}/>
                     <div className={styles.body}>
-                        <Breadcrumbs />
                         <Switch>
                             {newRouteList}
-                            <Redirect path="/admin" to={{pathname: '/admin/CompanyList'}} />
+                            <Redirect path="/admin" to={{pathname: '/admin/login'}} />
                         </Switch>
                     </div>
                 </div>
