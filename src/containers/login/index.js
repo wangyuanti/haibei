@@ -37,7 +37,7 @@ class Login extends Component {
                         Cookie.setCookie('nick_name', res.content.nick_name);
                         Cookie.setCookie('avatar', res.content.avatar);
                         if(identity==2){
-                            this.props.history.push('/');
+                            this.props.history.push('/home');
                         }else if(identity==1){
                             this.props.history.push('/admin/CompanyList');
                         }
