@@ -22,7 +22,7 @@ class Home extends Component {
                 <RangePicker onChange={this.dateChange} />
                 <button onClick={this.ok}>变</button>
                 <div style={{width:'30%',height:200}}>
-                    <EchersModule data={data}/>
+                    <EchersModule />
                 </div>
 
             </div>
