@@ -59,50 +59,41 @@ class Admin extends Component {
     }
     render() {
         console.log(this.props);
-        //导航列表
-        let navList=[
-            {path:'/admin/CompanyList',name:'公司列表',ico:CompanyListIco},
-            {path:'/admin/CompetenceList',name:'权限列表',ico:CompetenceListIco},
-            {path:'/admin/UserGroupList',name:'用户组列表',ico:UserGroupListIco},
-            {path:'/admin/UserList',name:'用户列表',ico:UserListIco},
-            {path:'/admin/LogList',name:'操作日志',ico:LogListIco},
-            {path:'/admin/countryList',name:'国家列表',ico:countryListIco},
-            {path:'/admin/projectList',name:'项目列表',ico:ProjectListIco},
-            {path:'/admin/CaseList',name:'案子列表',ico:CaseListIco},
-            {path:'/admin/ResourceList',name:'资源列表',ico:ResourceListIco},
-            {path:'/admin/FeeTypeList',name:'费用类型',ico:FeeTypeListIco},
-            {path:'/admin/ClientSourceList',name:'客户来源',ico:ClientSourceListIco},
-            {path:'/admin/ResourcePoolDeploy',name:'资源池配置',ico:ResourcePoolDeployIco},
-
+        //导航路由列表
+        let routeList=[
+            {path:"/admin/CompanyList",component:CompanyList,name:'公司列表',ico:CompanyListIco},
+            {path:"/admin/CompetenceList",component:CompetenceList,name:'权限列表',ico:CompetenceListIco},
+            {path:"/admin/UserGroupList",component:UserGroupList,name:'用户组列表',ico:UserGroupListIco},
+            {path:"/admin/UserList",component:UserList,name:'用户列表',ico:UserListIco},
+            {path:"/admin/LogList",component:LogList,name:'操作日志',ico:LogListIco},
+            {path:"/admin/countryList",component:CountryList,name:'国家列表',ico:countryListIco},
+            {path:"/admin/projectList",component:ProjectList,name:'项目列表',ico:ProjectListIco},
+            {path:"/admin/CaseList",component:CaseList,name:'案子列表',ico:CaseListIco},
+            {path:"/admin/ResourceList",component:ResourceList,exact:true,name:'资源列表',ico:ResourceListIco},
+            {path:"/admin/FeeTypeList",component:FeeTypeList,name:'费用类型',ico:FeeTypeListIco},
+            {path:"/admin/ClientSourceList",component:ClientSourceList,name:'客户来源',ico:ClientSourceListIco},
+            {path:"/admin/ResourcePoolDeploy",component:ResourcePoolDeploy,name:'资源池配置',ico:ResourcePoolDeployIco},
 
         ];
-        //路由列表
-        let routeList=[
-            {path:"/admin/CompanyList",component:CompanyList},
-            {path:"/admin/CompetenceList",component:CompetenceList},
-            {path:"/admin/UserGroupList",component:UserGroupList},
-            {path:"/admin/UserList",component:UserList},
-            {path:"/admin/LogList",component:LogList},
-            {path:"/admin/countryList",component:CountryList},
-            {path:"/admin/projectList",component:ProjectList},
-            {path:"/admin/CaseList",component:CaseList},
-            {path:"/admin/ResourceList",component:ResourceList,exact:true},
-            {path:"/admin/FeeTypeList",component:FeeTypeList},
-            {path:"/admin/ClientSourceList",component:ClientSourceList},
-            {path:"/admin/ResourcePoolDeploy",component:ResourcePoolDeploy},
+        //二级路由列表
+        let routeChildList=[
             {path:"/admin/ResourceList/add",component:ResourceListChild},
         ];
         let newRouteList=routeList.map((e,i)=>{
+            return <Route path={e.path}  component={e.component} key={e.path} exact={e.exact}/>
+        });
+        let newRouteChildList=routeChildList.map((e,i)=>{
             return <Route path={e.path}  component={e.component} key={e.path} exact={e.exact}/>
         })
         return (
             <div>
                 <Header path='/admin'/>
                 <div className={styles.navAndBody}>
-                    <Nav navList={navList}/>
+                    <Nav navList={routeList}/>
                     <div className={styles.body}>
                         <Switch>
                             {newRouteList}
+                            {newRouteChildList}
                             <Redirect path="/admin" to={{pathname: '/admin/login'}} />
                         </Switch>
                     </div>

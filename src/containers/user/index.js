@@ -7,9 +7,14 @@ import Nav from "@/component/nav";
 import Header from '@/component/header';
 import {message} from "antd";
 import UserInfo from '@/containers/userInfo';
-import Home from './home';
 
+//页面
+import Home from './home';
+import ResourceList from './ResourceList';
+//图标
 import CompanyListIco from '@/img/companyList.png';
+import ResourceListIco from  '@/img/resourceList.png'
+
 class User extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +35,7 @@ class User extends Component {
         //导航路由
         let routeList=[
             {path:'/home',name:'公司列表',ico:CompanyListIco,component:Home},
+            {path:"/ResourceList",component:ResourceList,exact:true,name:'资源列表',ico:ResourceListIco}
         ];
         let newRouteList=routeList.map((e,i)=>{
             return <Route path={e.path}  component={e.component} key={e.path} exact={e.exact}/>
