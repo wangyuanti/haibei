@@ -26,18 +26,35 @@ class ResourceList extends Component {
         const{companyID}=this.state;
         let filterProps={   //设置条件搜索
             onChange:(value,type)=>this.onFilterChange(value,type),
-            ClearValue:(type)=>this.ClearValue(type),
-            companyFilter:true,
-            countryFilter:true,
-            projectFilter:true,
-            staffFilter:true,
-            minWidth:1110,
+            search:true,
+            modulesData:[
+                {
+                    type:'companyFilter',
+                    field:'company',
+                    title:'国家'
+                },
+                {
+                    type:'projectFilter',
+                    field:'project',
+                    title:'项目'
+                },
+                {
+                    type:'dateFilter',
+                    field:'dateFilter1',
+                    title:'时间1'
+                },
+                {
+                    type:'dateFilter',
+                    field:'dateFilter2',
+                    title:'时间2'
+                }
+
+            ]
         };
         return (
             <div>
                 <Filter {...filterProps}/>
                 {companyID}
-                <button onClick={()=>this.ClearValue(true)}>aaaaaaaaaaa</button>
             </div>
         );
     }

@@ -57,7 +57,7 @@ class ResourceList extends Component {
                 message.error(res.content);
             }
         })
-    }
+    };
     //修改每页显示数
     onShowSizeChange(current, pageSize){
         this.setState({limit:pageSize},this.getList)
