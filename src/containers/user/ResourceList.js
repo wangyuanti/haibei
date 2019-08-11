@@ -19,7 +19,6 @@ class ResourceList extends Component {
             case 'company':
                 this.setState({ companyID:value});
                 break;
-
         }
     };
     render() {

@@ -32,17 +32,17 @@ class Filter extends Component {
         const{modulesData}=this.props;
         let companyFilter,staffFilter,countryFilter,projectFilter,staffFilterType= undefined;
         modulesData.forEach(item=>{
-            if(item.type=='companyFilter'){
+            if(item.type==='companyFilter'){
                 companyFilter = true;
             }
-            if(item.type=='staffFilter'){
+            if(item.type==='staffFilter'){
                 staffFilter = true;
                 staffFilterType = item.staffFilterType;
             }
-            if(item.type=='countryFilter'){
+            if(item.type==='countryFilter'){
                 countryFilter = true;
             }
-            if(item.type=='projectFilter'){
+            if(item.type==='projectFilter'){
                 projectFilter = true;
             }
         });
@@ -156,11 +156,11 @@ class Filter extends Component {
             switch (e.type){
                 case 'companyFilter':
                     module =
-                        <div key={e.type+'_'+e.field}>
+                        <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
                             <span style={{marginRight}}>{e.title}:</span>
                             <Select
                                 showSearch
-                                style={{ width: 120,marginRight,marginBottom}}
+                                style={{ width: 120,marginRight}}
                                 placeholder="请选择公司"
                                 onChange={(value)=>this.onChange(value,e.field)}
                                 filterOption={(input, option) =>
@@ -175,11 +175,11 @@ class Filter extends Component {
                             break;
                 case 'staffFilter':
                     module=
-                        <div key={e.type+'_'+e.field}>
+                        <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
                             <span style={{marginRight}}>{e.title}:</span>
                             <Select
                                 showSearch
-                                style={{ width: 120 ,marginRight,marginBottom}}
+                                style={{ width: 120 ,marginRight}}
                                 placeholder="请选择人员"
                                 onChange={(value)=>this.onChange(value,e.field)}
                                 filterOption={(input, option) =>
@@ -194,11 +194,11 @@ class Filter extends Component {
                                 break;
                 case 'countryFilter':
                     module=
-                        <div key={e.type+'_'+e.field}>
+                        <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
                             <span style={{marginRight}}>{e.title}:</span>
                             <Select
                                 showSearch
-                                style={{ width: 180 ,marginRight,marginBottom}}
+                                style={{ width: 180 ,marginRight}}
                                 placeholder="请选择国家"
                                 onChange={(value)=>this.onChange(value,e.field)}
                                 filterOption={(input, option) =>
@@ -213,11 +213,11 @@ class Filter extends Component {
                     break;
                 case 'projectFilter':
                     module=
-                        <div key={e.type+'_'+e.field}>
+                        <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
                             <span style={{marginRight}}>{e.title}:</span>
                             <Select
                                 showSearch
-                                style={{ width: 300,marginRight,marginBottom}}
+                                style={{ width: 300,marginRight}}
                                 placeholder="请选择项目"
                                 onChange={(value)=>this.onChange(value,e.field)}
                                 filterOption={(input, option) =>
@@ -232,12 +232,12 @@ class Filter extends Component {
                     break;
                 case 'dateFilter':
                     module=
-                        <div key={e.type+'_'+e.field}>
+                        <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
                             <span style={{marginRight}}>{e.title}:</span>
                             <RangePicker onChange={(date, dateString)=>this.onDateChange(date, dateString,e.field)}
                                          value={(this.state[e.field]&&this.state[e.field][0]&&this.state[e.field][1])
                                              ?[moment(this.state[e.field][0]), moment(this.state[e.field][1])]:[]}
-                                         style={{ marginRight,marginBottom }}/>
+                                         style={{ marginRight }}/>
                         </div>;
                     break;
             }

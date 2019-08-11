@@ -4,4 +4,9 @@
 }
 .filterDown{
   display: flex;
+  flex-wrap: wrap;
+}
+.oneFilter{
+  display: flex;
+  align-items: center;
 }
