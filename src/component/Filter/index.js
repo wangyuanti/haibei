@@ -12,7 +12,7 @@ class Filter extends Component {
         onChange:()=>{},//向父组件传值的函数
         modulesData:[],//选择器数组
         search:false, //搜索框
-        minWidth:1110,     //组件的最小宽度
+        // minWidth:1110,     //组件的最小宽度
         marginRight:20,     //单个筛选框的右边距
         marginBottom:20,    //单个筛选框的下边距
         searchWidth:200,  //搜索框宽度
@@ -50,7 +50,7 @@ class Filter extends Component {
             this.getCompany();
         };
         if(staffFilter){
-            // this.getStaff(staffFilterType)
+            this.getStaff(staffFilterType)
         };
         if(countryFilter){
             this.getCountry();
@@ -157,7 +157,7 @@ class Filter extends Component {
                 case 'companyFilter':
                     module =
                         <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
-                            <span style={{marginRight}}>{e.title}:</span>
+                            <span style={{marginRight:10}}>{e.title}:</span>
                             <Select
                                 showSearch
                                 style={{ width: 120,marginRight}}
@@ -176,7 +176,7 @@ class Filter extends Component {
                 case 'staffFilter':
                     module=
                         <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
-                            <span style={{marginRight}}>{e.title}:</span>
+                            <span style={{marginRight:10}}>{e.title}:</span>
                             <Select
                                 showSearch
                                 style={{ width: 120 ,marginRight}}
@@ -195,7 +195,7 @@ class Filter extends Component {
                 case 'countryFilter':
                     module=
                         <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
-                            <span style={{marginRight}}>{e.title}:</span>
+                            <span style={{marginRight:10}}>{e.title}:</span>
                             <Select
                                 showSearch
                                 style={{ width: 180 ,marginRight}}
@@ -214,7 +214,7 @@ class Filter extends Component {
                 case 'projectFilter':
                     module=
                         <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
-                            <span style={{marginRight}}>{e.title}:</span>
+                            <span style={{marginRight:10}}>{e.title}:</span>
                             <Select
                                 showSearch
                                 style={{ width: 300,marginRight}}
@@ -233,7 +233,7 @@ class Filter extends Component {
                 case 'dateFilter':
                     module=
                         <div key={e.type+'_'+e.field} className={styles.oneFilter} style={{marginBottom}}>
-                            <span style={{marginRight}}>{e.title}:</span>
+                            <span style={{marginRight:10}}>{e.title}:</span>
                             <RangePicker onChange={(date, dateString)=>this.onDateChange(date, dateString,e.field)}
                                          value={(this.state[e.field]&&this.state[e.field][0]&&this.state[e.field][1])
                                              ?[moment(this.state[e.field][0]), moment(this.state[e.field][1])]:[]}
@@ -244,7 +244,7 @@ class Filter extends Component {
             return module;
         });
         return (
-            <div style={{minWidth}}>
+            <div style={{minWidth}} className={styles.body}>
                 <div className={styles.filterUp}>
                     <div>
                         {newButton}

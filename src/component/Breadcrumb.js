@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 const breadcrumbNameMap = {
     '/userInfo': '个人中心',
+    '/ResourceList': '资源列表',
+    '/ResourceList/:id': '客户信息',
 };
 
 class Breadcrumbs extends Component {
@@ -17,18 +19,34 @@ class Breadcrumbs extends Component {
 
     render() {
         const { location ,userInfo} = this.props;
+        const re = /^[0-9]+.?[0-9]*$/;
         const pathSnippets = location.pathname.split('/').filter(i => i);
         const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-            const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
-            return (
-                <Breadcrumb.Item key={url}>
-                    <Link to={url}>{breadcrumbNameMap[url]}</Link>
-                </Breadcrumb.Item>
-            );
+            let url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+            const urlEnd = url.split('/');
+            if(re.test(urlEnd[urlEnd.length-1])){
+                urlEnd.splice(urlEnd.length-1,1,':id');
+                url = urlEnd.join('/');
+                return (
+                    <Breadcrumb.Item key={url}>
+                        {breadcrumbNameMap[url]}
+                    </Breadcrumb.Item>
+                );
+            }else{
+                if(breadcrumbNameMap[url]){
+                    return (
+                        <Breadcrumb.Item key={url}>
+                            <Link to={url}>{breadcrumbNameMap[url]}</Link>
+                        </Breadcrumb.Item>
+                    );
+                }
+            }
+
+
         });
         const breadcrumbItems = [
             <Breadcrumb.Item key="home">
-                {userInfo.groupId===1?<Link to="/admin/CompanyList">首页</Link>:<Link to="/">首页</Link>}
+                {userInfo.groupId===1?<Link to="/admin/CompanyList">首页</Link>:<Link to="/home">首页</Link>}
             </Breadcrumb.Item>,
         ].concat(extraBreadcrumbItems);
 

@@ -10,7 +10,8 @@ import UserInfo from '@/containers/userInfo';
 
 //页面
 import Home from './home';
-import ResourceList from './ResourceList';
+import ResourceList from './ResourceList/ResourceList';
+import ClientInfo from './clientInfo';
 //图标
 import CompanyListIco from '@/img/companyList.png';
 import ResourceListIco from  '@/img/resourceList.png'
@@ -37,20 +38,31 @@ class User extends Component {
             {path:'/home',name:'公司列表',ico:CompanyListIco,component:Home},
             {path:"/ResourceList",component:ResourceList,exact:true,name:'资源列表',ico:ResourceListIco}
         ];
+        let routeChildList=[
+            {path:"/ResourceList/:id",component:ClientInfo}
+        ];
+
         let newRouteList=routeList.map((e,i)=>{
             return <Route path={e.path}  component={e.component} key={e.path} exact={e.exact}/>
-        })
+        });
+        let newRouteChildList=routeChildList.map((e,i)=>{
+            return <Route path={e.path}  component={e.component} key={e.path} exact={e.exact}/>
+        });
         return (
             <div>
                 <Header path='/'/>
                 <div className={styles.navAndBody}>
                     <Nav navList={routeList}/>
                     <div className={styles.body}>
-                        <Switch>
-                            {newRouteList}
-                            <Route path="/userInfo" component={UserInfo} />
-                            <Redirect from="/*" to={{pathname: '/login'}} />
-                        </Switch>
+                        <div className={styles.bodyBox}>
+                            <Switch>
+                                {newRouteList}
+                                {newRouteChildList}
+                                <Route path="/userInfo" component={UserInfo} />
+                                <Redirect from="/*" to={{pathname: '/login'}} />
+                            </Switch>
+                        </div>
+
                     </div>
                 </div>
             </div>

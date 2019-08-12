@@ -1,0 +1,35 @@
+.body{
+  width: 100%;
+  background:rgba(255,255,255,1);
+  border-radius:16px;
+  padding: 30px 30px 14px;
+}
+.pool{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  margin-bottom: 30px;
+  cursor:pointer;
+}
+
+.poolOne{
+  width: 180px;
+  padding: 20px 0;
+  background-color: #eeeeee;
+  color: #888888;
+  border-radius: 10px;
+  text-align: center;
+}
+.poolOneOk{
+  background-color: #1890ff;
+  color: white;
+}
+.poolOneDown{
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.num{
+  font-size: 22px;
+}

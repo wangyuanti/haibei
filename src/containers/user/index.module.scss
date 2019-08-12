@@ -4,10 +4,15 @@
   overflow:hidden;
 }
 .body{
-  width: 100%;
+  width: calc(100% - 130px);
   padding: 20px 30px ;
   box-sizing: border-box;
   background-color: #EFF3F5;
   height: calc(100vh - 100px);
   overflow: auto;
+}
+.bodyBox{
+  width: 100%;
+  overflow: auto;
+  min-width: 1160px;
 }
