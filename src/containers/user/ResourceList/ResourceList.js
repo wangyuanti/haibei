@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Button } from 'antd';
 import Filter from '@/component/Filter';
 import Table from '@/component/table';
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 import {message} from "antd/lib/index";
 class ResourceList extends Component {
     constructor(props) {

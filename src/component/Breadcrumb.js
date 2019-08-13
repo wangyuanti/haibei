@@ -51,7 +51,7 @@ class Breadcrumbs extends Component {
         ].concat(extraBreadcrumbItems);
 
         return (
-            <div>
+            <div style={{marginBottom:20,paddingLeft:8}}>
                 <Breadcrumb>{breadcrumbItems}</Breadcrumb>
             </div>
         );
