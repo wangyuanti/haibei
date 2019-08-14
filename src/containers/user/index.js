@@ -39,7 +39,7 @@ class User extends Component {
             {path:"/ResourceList",component:ResourceList,exact:true,name:'资源列表',ico:ResourceListIco}
         ];
         let routeChildList=[
-            {path:"/ResourceList/:id",component:ClientInfo}
+            {path:"/ResourceList/:id",component:ClientInfo},
         ];
 
         let newRouteList=routeList.map((e,i)=>{

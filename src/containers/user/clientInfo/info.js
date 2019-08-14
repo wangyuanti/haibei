@@ -387,7 +387,7 @@ class Info extends Component {
                         </Row>
                     </div>
                 </div>
-                <div style={{display:'flex',justifyContent: 'center'}}>
+                <div style={{display:'flex',justifyContent: 'flex-end'}}>
                     <div>
                         <Button  type="primary" style={{width:120,marginRight:40}}>保存</Button ><Button type="primary" style={{width:120}}>签约</Button>
                     </div>

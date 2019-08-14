@@ -37,7 +37,7 @@ class ResourceList extends Component {
             sort,
             page_num:current,
             page_size
-        }
+        };
         request({
             url:'/Resource/allList',
             method:'post',
@@ -81,6 +81,11 @@ class ResourceList extends Component {
     render() {
         const{clientList,current,total,page_size,pool,sort}=this.state;
         let filterProps={   //设置条件搜索
+            newButton:<div>
+                <Button type="primary" className={styles.newButton} onClick={()=>{this.props.history.push('/ResourceList/new');}}>录入资源</Button>
+                <Button type="primary" className={styles.newButton}>批量导入资源</Button>
+                <Button type="primary" className={styles.newButton}>下载资源模板</Button>
+            </div>,
             onChange:(value,type)=>this.onFilterChange(value,type),
             search:true,
             modulesData:[

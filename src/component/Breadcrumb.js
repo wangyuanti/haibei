@@ -7,6 +7,7 @@ const breadcrumbNameMap = {
     '/userInfo': '个人中心',
     '/ResourceList': '资源列表',
     '/ResourceList/:id': '客户信息',
+    '/ResourceList/new': '录入信息',
 };
 
 class Breadcrumbs extends Component {
@@ -34,15 +35,22 @@ class Breadcrumbs extends Component {
                 );
             }else{
                 if(breadcrumbNameMap[url]){
-                    return (
-                        <Breadcrumb.Item key={url}>
-                            <Link to={url}>{breadcrumbNameMap[url]}</Link>
-                        </Breadcrumb.Item>
-                    );
+                    if((index*1+1)===pathSnippets.length){
+                        return (
+                            <Breadcrumb.Item key={url}>
+                                {breadcrumbNameMap[url]}
+                            </Breadcrumb.Item>
+                        );
+                    }else{
+                        return(
+                            <Breadcrumb.Item key={url}>
+                                <Link to={url}>{breadcrumbNameMap[url]}</Link>
+                            </Breadcrumb.Item>
+                        )
+                    }
+
                 }
             }
-
-
         });
         const breadcrumbItems = [
             <Breadcrumb.Item key="home">
