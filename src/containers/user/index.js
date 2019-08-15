@@ -12,9 +12,11 @@ import UserInfo from '@/containers/userInfo';
 import Home from './home';
 import ResourceList from './ResourceList/ResourceList';
 import ClientInfo from './clientInfo';
+import ContractList from './contractList';
 //图标
 import CompanyListIco from '@/img/companyList.png';
-import ResourceListIco from  '@/img/resourceList.png'
+import ResourceListIco from  '@/img/resourceList.png';
+import ContractListIco from '@/img/contract.png'
 
 class User extends Component {
     constructor(props) {
@@ -36,7 +38,8 @@ class User extends Component {
         //导航路由
         let routeList=[
             {path:'/home',name:'公司列表',ico:CompanyListIco,component:Home},
-            {path:"/ResourceList",component:ResourceList,exact:true,name:'资源列表',ico:ResourceListIco}
+            {path:"/ResourceList",component:ResourceList,exact:true,name:'资源列表',ico:ResourceListIco},
+            {path:"/ContractList",component:ContractList,exact:true,name:'合同列表',ico:ContractListIco}
         ];
         let routeChildList=[
             {path:"/ResourceList/:id",component:ClientInfo},
