@@ -13,6 +13,7 @@ import Home from './home';
 import ResourceList from './ResourceList/ResourceList';
 import ClientInfo from './clientInfo';
 import ContractList from './contractList';
+import ContractInfo from './ContractInfo';
 //图标
 import CompanyListIco from '@/img/companyList.png';
 import ResourceListIco from  '@/img/resourceList.png';
@@ -43,6 +44,7 @@ class User extends Component {
         ];
         let routeChildList=[
             {path:"/ResourceList/:id",component:ClientInfo},
+            {path:"/ContractList/:id",component:ContractInfo},
         ];
 
         let newRouteList=routeList.map((e,i)=>{

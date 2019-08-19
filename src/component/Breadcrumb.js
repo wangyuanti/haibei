@@ -8,6 +8,9 @@ const breadcrumbNameMap = {
     '/ResourceList': '资源列表',
     '/ResourceList/:id': '客户信息',
     '/ResourceList/new': '录入信息',
+    '/ContractList': '合同列表',
+    '/ContractList/:id': '合同信息',
+    '/ContractList/new': '签约',
 };
 
 class Breadcrumbs extends Component {

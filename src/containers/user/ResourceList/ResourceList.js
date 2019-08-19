@@ -1,11 +1,14 @@
 import React , { Component } from 'react';
 import request from '@/ajax/helper.js';
 import moment from 'moment';
-import { Button } from 'antd';
+import { Button ,Upload} from 'antd';
 import Filter from '@/component/Filter';
 import Table from '@/component/table';
 import styles from './index.module.scss';
 import {message} from "antd/lib/index";
+import domain from  '@/config';
+import Cookie from "@/component/cookie.js";
+const commonUrl = domain.domain;
 class ResourceList extends Component {
     constructor(props) {
         super(props);
@@ -78,13 +81,38 @@ class ResourceList extends Component {
         this.props.history.push('/ResourceList/'+record.id);
 
     }
+    //下载
+    download=()=>{
+        window.open(commonUrl + '/Resource/downTemplate'+'?login_key='+Cookie.getCookie('login_key'));
+    }
     render() {
         const{clientList,current,total,page_size,pool,sort}=this.state;
+        const props = {
+            name: 'excel',
+            action: commonUrl + '/Resource/importData',
+            onChange(info) {
+                console.log(info.file.status,info.file.response);
+                if(info.file.status === 'done'){
+                    if(info.file.response==='1'){
+                        message.success('上传保存成功')
+                    }else {
+                        message.error(info.file.response.content)
+                    }
+                }else if (info.file.status === 'error') {
+                    message.error('上传失败')
+                }
+            },
+            data:{login_key:Cookie.getCookie('login_key')},
+            accept:'excel',
+            showUploadList:false
+        };
         let filterProps={   //设置条件搜索
-            newButton:<div>
+            newButton:<div className={styles.newButtonBox}>
                 <Button type="primary" className={styles.newButton} onClick={()=>{this.props.history.push('/ResourceList/new');}}>录入资源</Button>
-                <Button type="primary" className={styles.newButton}>批量导入资源</Button>
-                <Button type="primary" className={styles.newButton}>下载资源模板</Button>
+                <Upload {...props}>
+                    <Button type="primary" className={styles.newButton}>批量导入资源</Button>
+                </Upload>
+                <Button type="primary" className={styles.newButton} onClick={this.download}>下载资源模板</Button>
             </div>,
             onChange:(value,type)=>this.onFilterChange(value,type),
             search:true,

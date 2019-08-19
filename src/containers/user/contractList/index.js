@@ -4,9 +4,6 @@ import styles from './index.module.scss';
 import { Button,Upload,message,Icon } from 'antd';
 import Filter from '@/component/Filter';
 import Table from '@/component/table';
-import domain from  '@/config';
-import Cookie from "@/component/cookie.js"
-const commonUrl = domain.domain;
 class ContractList extends Component {
     constructor(props) {
         super(props);
@@ -33,24 +30,7 @@ class ContractList extends Component {
     };
     //查看客户详情
     information(text, record){
-        // this.props.history.push('/ResourceList/'+record.id);
-
-    }
-    xz=()=>{
-        window.open(commonUrl + '/Resource/downTemplate'+'?login_key='+Cookie.getCookie('login_key'));
-        // fetch(commonUrl + '/Resource/downTemplate'+'?login_key='+Cookie.getCookie('login_key')).then(res => res.blob().then(blob => {
-        //     let a = document.createElement('a');
-        //     let url = window.URL.createObjectURL(blob);
-        //     let filename = res.headers.get('Content-Disposition');
-        //     if (filename) {
-        //         filename = filename.match(/\"(.*)\"/)[1]; //提取文件名
-        //         a.href = url;
-        //         a.download = filename; //给下载下来的文件起个名字
-        //         a.click();
-        //         window.URL.revokeObjectURL(url);
-        //         a = null;
-        //     }
-        // }));
+        this.props.history.push('/ContractList/'+record.id);
     }
     render() {
         const{clientList,current,total,page_size}=this.state;
@@ -109,21 +89,6 @@ class ContractList extends Component {
         clientList.forEach((e,i)=>{
             newClientList.push({...e,key:(current-1)*10+i+1})
         });
-        const props = {
-            name: 'excel',
-            action: commonUrl + '/SysConfig/tempImport',
-            onChange(info) {
-                if (info.file.status !== 'uploading') {
-                    console.log(info.file, info.fileList);
-                }
-                if (info.file.status === 'done') {
-                    message.success(`${info.file.name} file uploaded successfully`);
-                } else if (info.file.status === 'error') {
-                    message.error(`${info.file.name} file upload failed.`);
-                }
-            },
-            data:{login_key:Cookie.getCookie('login_key')}
-        };
         return (
             <div>
                 <Filter {...filterProps}/>
@@ -133,12 +98,6 @@ class ContractList extends Component {
                            tableData={newClientList}
                     />
                 </div>
-                <Upload {...props}>
-                    <Button>
-                        <Icon type="upload" /> Click to Upload
-                    </Button>
-                </Upload>
-                <Button onClick={this.xz}>下载</Button>
             </div>
         );
     }
